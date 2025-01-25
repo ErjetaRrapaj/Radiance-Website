@@ -16,6 +16,10 @@
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
   </head>
   <body>
     <div class="nav">
@@ -39,7 +43,7 @@
     <div class="conP1">
       <div class="form">
         <h4>Send us an email</h4>
-        <form action="send_email.php" method="POST">
+        <form id="contact-form">
           <label for="name"><b>Name: &nbsp;</b></label> <br />
           <input type="text" id="name" name="name" required /><br /><br />
 
@@ -88,5 +92,27 @@
       <img class="logoImg" src="./images/logo.png" />
       <h2>Radiance</h2>
     </footer>
+    <script>
+      emailjs.init("meWG2HBU4ML2LqL0I");
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const serviceID = "service_bil0btb";
+          const templateID = "template_fqe3c9c";
+
+          emailjs
+            .sendForm(serviceID, templateID, this)
+            .then((response) => {
+              alert("Email sent successfully!");
+              console.log("SUCCESS!", response.status, response.text);
+              this.reset();
+            })
+            .catch((error) => {
+              alert("Failed to send email. Please try again.");
+              console.error("FAILED...", error);
+            });
+        });
+    </script>
   </body>
 </html>
