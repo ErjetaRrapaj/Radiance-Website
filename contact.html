@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radiance</title>
+    <link rel="icon" href="./images/logo.png" />
+    <link rel="stylesheet" href="./contact.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="nav">
+      <nav>
+        <div class="logo">
+          <img class="logoImg" src="./images/logo.png" />
+          <h2>Radiance</h2>
+        </div>
+        <div class="links">
+          <a href="./index.html" active>Home</a>
+          <a href="./product.html">Shop</a>
+          <a href="./cart.html">Cart</a>
+          <a href="./contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+    <h3>
+      Feel free to reach out to us for any inquiries, feedback, or
+      assistance—we'd love to hear from you!
+    </h3>
+    <div class="conP1">
+      <div class="form">
+        <h4>Send us an email</h4>
+        <form action="send_email.php" method="POST">
+          <label for="name"><b>Name: &nbsp;</b></label> <br />
+          <input type="text" id="name" name="name" required /><br /><br />
+
+          <label for="email"><b>Email:&nbsp;&nbsp;&nbsp;</b></label> <br />
+          <input type="email" id="email" name="email" required /><br /><br />
+
+          <label for="message"><b>Message:&nbsp;</b></label
+          ><br />
+          <textarea id="message" name="message" rows="5" required>
+&nbsp;&nbsp;</textarea
+          ><br /><br />
+
+          <button type="submit">Send</button>
+        </form>
+      </div>
+      <hr />
+      <div class="map">
+        <h4>Where you can find us</h4>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.8190823485097!2d19.813852176101488!3d41.33454727130662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1350310db0518c2f%3A0x66adc753e7cc308!2sFaculty%20of%20Natural%20Sciences!5e0!3m2!1sen!2s!4v1737629863944!5m2!1sen!2s"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+    <h4>Other Contacts</h4>
+    <div class="conP2">
+      <section>
+        <img src="./images/phone.png" alt="phone" />
+      </section>
+      <section>
+        <img src="./images/email.png" alt="email" />
+      </section>
+      <section>
+        <img src="./images/facebook.png" alt="facebook" />
+      </section>
+      <section>
+        <img src="./images/instagram.png" alt="instagram" />
+      </section>
+    </div>
+    <footer class="logo">
+      <img class="logoImg" src="./images/logo.png" />
+      <h2>Radiance</h2>
+    </footer>
+  </body>
+</html>

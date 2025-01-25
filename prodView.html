@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radiance</title>
+    <link rel="icon" href="./images/logo.png" />
+    <link rel="stylesheet" href="prodView.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="nav">
+      <nav>
+        <div class="logo">
+          <img class="logoImg" src="./images/logo.png" />
+          <h2>Radiance</h2>
+        </div>
+        <div class="links">
+          <a href="./index.html">Home</a>
+          <a href="./product.html">Shop</a>
+          <a href="./cart.html">Cart</a>
+          <a href="./contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+
+    <a href="product.html" class="back-button"><button>←</button></a>
+    <div id="product-detail-container"></div>
+
+    <footer class="logo">
+      <img class="logoImg" src="./images/logo.png" />
+      <h2>Radiance</h2>
+    </footer>
+
+    <script>
+      function addToCart() {
+        const product = JSON.parse(localStorage.getItem("selectedProduct"));
+        const quantity = parseInt(
+          document.querySelector(".quantity-input").value
+        );
+
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+        const existingItemIndex = cartItems.findIndex(
+          (item) => item.id === product.id
+        );
+
+        if (existingItemIndex !== -1) {
+          cartItems[existingItemIndex].quantity += quantity;
+        } else {
+          cartItems.push({
+            ...product,
+            quantity: quantity,
+          });
+        }
+
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        alert("Product added to cart!");
+      }
+
+      function renderProductDetails() {
+        const product = JSON.parse(localStorage.getItem("selectedProduct"));
+        if (!product) {
+          window.location.href = "./product.html";
+          return;
+        }
+
+        const container = document.getElementById("product-detail-container");
+        container.innerHTML = `
+          <div class="prodview">
+            <img src="./images/${product.image}" alt="${product.name}" />
+            <div class="text">
+              <h2>${product.name}</h2>
+              <p>$${product.price}</p>
+              <p>${product.description}</p>
+              
+              <div class="benefits-list">
+                <h3>Benefits:</h3>
+                <ul>
+                  ${product.benefits
+                    .map((benefit) => `<li>${benefit}</li>`)
+                    .join("")}
+                </ul>
+              </div>
+
+              <div class="ingredients">
+                <h3>Ingredients:</h3>
+                <p>${product.ingredients}</p>
+              </div>
+
+              <div class="quantity-controls">
+                <button class="minus">-</button>
+                <input type="number" class="quantity-input" value="1" pattern="[0-9]*" />
+                <button class="plus">+</button>
+              </div>
+
+              <button class="addCart" onclick="addToCart()">Add To Cart</button>
+              <a href="payment.html"><button class="payBtn">Buy It Now</button></a>
+            </div>
+          </div>
+        `;
+
+        setupQuantityControls();
+      }
+
+      function setupQuantityControls() {
+        const minusButton = document.querySelector(".minus");
+        const plusButton = document.querySelector(".plus");
+        const quantityInput = document.querySelector(".quantity-input");
+
+        function updateQuantity() {
+          let quantity = parseInt(quantityInput.value);
+          if (quantity < 0) {
+            quantityInput.value = 0;
+          } else if (quantity > 10) {
+            quantityInput.value = 10;
+          }
+        }
+
+        minusButton.addEventListener("click", function () {
+          let quantity = parseInt(quantityInput.value);
+          if (quantity > 0) {
+            quantityInput.value = quantity - 1;
+          }
+          updateQuantity();
+        });
+
+        plusButton.addEventListener("click", function () {
+          let quantity = parseInt(quantityInput.value);
+          if (quantity < 10) {
+            quantityInput.value = quantity + 1;
+          }
+          updateQuantity();
+        });
+
+        quantityInput.addEventListener("input", updateQuantity);
+      }
+
+      renderProductDetails();
+    </script>
+  </body>
+</html>
