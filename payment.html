@@ -33,7 +33,8 @@
       </nav>
     </div>
     <div class="payment">
-      <div class="paytext">
+      <div class="loader" id="loader">Loading... Please wait</div>
+      <div class="paytext" id="delayed-content">
         <h2>Payment Completed</h2>
         <a href="product.html"><button>Continue Shopping</button></a>
       </div>
@@ -42,5 +43,14 @@
       <img class="logoImg" src="./images/logo.png" />
       <h2>Radiance</h2>
     </footer>
+    <script>
+      const delay = 3000;
+      const loader = document.getElementById("loader");
+      const content = document.getElementById("delayed-content");
+      setTimeout(() => {
+        loader.style.display = "none";
+        content.style.display = "block";
+      }, delay);
+    </script>
   </body>
 </html>
