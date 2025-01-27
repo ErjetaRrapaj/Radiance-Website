@@ -4,7 +4,6 @@
 }
 nav {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   justify-content: space-between;
   font-family: Playfair Display;
@@ -82,7 +81,6 @@ footer {
   width: 1px;
   margin: 15px 0;
 }
-
 label {
   font-family: lato;
   color: #5f4d41;
@@ -132,12 +130,7 @@ section {
   align-items: center;
   justify-content: center;
 }
-section a {
-  font-family: playfair display;
-  font-size: 16px;
-  color: #44372f;
-  text-decoration: none;
-}
+
 section img {
   width: 70px;
   height: 70px;
